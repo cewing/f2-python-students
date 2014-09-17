@@ -11,6 +11,7 @@ A(m, n) =
 See http://en.wikipedia.org/wiki/Ackermann_function.
 """
 
+
 def ack(m, n):
     """Compute the Ackerman function"""
     if m < 0 or n < 0:
@@ -25,7 +26,7 @@ def ack(m, n):
 if __name__ == "__main__":
 
     # tests from the table in wikipedia
-    # you do'nt really need to test them all 
+    # you do'nt really need to test them all
     # they will get called as part of the recusive calls anyway...
 
     assert ack(0,0) == 1
@@ -47,6 +48,3 @@ if __name__ == "__main__":
 
 
     print u"tests passed"
-
-
-
