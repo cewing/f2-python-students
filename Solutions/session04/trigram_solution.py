@@ -29,13 +29,9 @@ def make_words(text):
     # there are other ways to do this:
     #   a_word.strip() works well, too.
 
-    # NOTE: I keep the single quotes, because it is also used as an
-    # apostophe -- but that does end up with some wierd results
-    # so you could be smarter about that.
-
     punctuation = unicode(string.punctuation)
-    string.punctuation.replace("'", "") # keep apostropies
-    string.punctuation.replace("-", "") # keep hyphenated words
+    punctuation = string.punctuation.replace("'", "") # keep apostropies
+    punctuation = string.punctuation.replace("-", "") # keep hyphenated words
     table = dict([ (ord(c), None) for c in punctuation])
 
     # lower-case everything to remove that complication:
@@ -99,20 +95,10 @@ def build_trigram(words):
     return word_pairs
 
 
-if __name__ == "__main__":
+def build_text(word_pairs):
 
-    # get the filename from the command line
-    try:
-        filename = sys.argv[1]
-    except IndexError:
-        print "You must pass in a filename"
-        sys.exit(1)
+    """build some new text from the word_pair dict supplied"""
 
-
-    in_data = read_in_data(filename)
-    words = make_words(in_data)
-    word_pairs = build_trigram(words)
-    # create some new text
     new_text = []
     for i in range(30): # do thirty sentences
         # pick a word pair to start the sentence
@@ -129,5 +115,23 @@ if __name__ == "__main__":
         new_text.extend(sentence)
 
     new_text = " ".join(new_text)
+
+    return new_text
+
+
+if __name__ == "__main__":
+
+    # get the filename from the command line
+    try:
+        filename = sys.argv[1]
+    except IndexError:
+        print "You must pass in a filename"
+        sys.exit(1)
+
+
+    in_data = read_in_data(filename)
+    words = make_words(in_data)
+    word_pairs = build_trigram(words)
+    new_text = build_text(word_pairs)
 
     print new_text
