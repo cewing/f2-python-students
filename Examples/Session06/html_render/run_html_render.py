@@ -12,6 +12,7 @@ import cStringIO
 
 # importing the html_rendering code with a short name for easy typing.
 import html_render as hr
+reload(hr)
 
 ## writing the file out:
 def render(page, filename):
@@ -23,7 +24,7 @@ def render(page, filename):
    """
 
    f = cStringIO.StringIO()
-   page.render(f)
+   page.render(f, "    ")
 
    f.reset()
 
