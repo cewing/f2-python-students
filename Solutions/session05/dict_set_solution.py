@@ -16,7 +16,7 @@ d = {u"name": u"Chris",
 # Display the dictionary.
 print d
 
-#or something fancier, like:
+# or something fancier, like:
 print u"{name} is from {city}, and likes {cake} cake.".format(**d)
 
 
@@ -25,7 +25,7 @@ print u"{name} is from {city}, and likes {cake} cake.".format(**d)
 
 print u"with cake"
 print d
-#del d[u"cake"]
+# del d[u"cake"]
 d.pop(u"cake")
 
 print u"without cake"
@@ -65,15 +65,15 @@ hex_dict = dict(zip(nums, hexes))
 
 print hex_dict
 
-## fancy with a list comprehension:
+# fancy with a list comprehension:
 
 nums = range(16)
 hexes = [hex(i) for i in nums]
 hex_dict = dict(zip(nums, hexes))
 print hex_dict
 
-## even fancier with a dict comprehension:
-hex_dict = { i: hex(i) for i in range(16) }
+# even fancier with a dict comprehension:
+hex_dict = {i: hex(i) for i in range(16)}
 print hex_dict
 
 
@@ -87,7 +87,7 @@ print a_dict
 
 # or the fancy dict comprehension method:
 
-a_dict = { key:val.count(u't') for key,val in d.items()}
+a_dict = {key: val.count(u't') for key, val in d.items()}
 
 print a_dict
 
@@ -105,22 +105,22 @@ s2 = set()
 s3 = set()
 s4 = set()
 for i in range(21):
-    if not i%2:
+    if not i % 2:
         s2.add(i)
-    if not i%3:
+    if not i % 3:
         s3.add(i)
-    if not i%4:
+    if not i % 4:
         s4.add(i)
 
 print s2
 print s3
 print s4
 
-#or a bit trickier:
+# or a bit trickier:
 s2, s3, s4 = sets = (set(), set(), set())
-for i, st in zip( (2,3,4), sets):
+for i, st in zip((2, 3, 4), sets):
     for j in range(21):
-        if not j%i:
+        if not j % i:
             st.add(j)
 print s2
 print s3
@@ -128,9 +128,9 @@ print s4
 
 
 # or the set comprehension way:
-s2 = { i for i in range(21) if not i%2}
-s3 = { i for i in range(21) if not i%3}
-s4 = { i for i in range(21) if not i%4}
+s2 = {i for i in range(21) if not i % 2}
+s3 = {i for i in range(21) if not i % 3}
+s4 = {i for i in range(21) if not i % 4}
 
 print s2
 print s3
@@ -138,7 +138,7 @@ print s4
 
 # combine those:
 # or is that getting too carried away?
-s2, s3, s4 = [ { i for i in range(21) if not i%j} for j in range(2,5) ]
+s2, s3, s4 = [{i for i in range(21) if not i % j} for j in range(2, 5)]
 
 print s2
 print s3
@@ -161,7 +161,7 @@ s.add('i')
 print s
 
 # maybe:
-s = set(u'Python'.lower()) # that wasn't specified...
+s = set(u'Python'.lower())  # that wasn't specified...
 s.add('i')
 
 # Create a frozenset with the letters in ‘marathon’
@@ -173,11 +173,7 @@ fs = frozenset(u'marathon')
 print u"union:", s.union(fs)
 print u"intersection:", s.intersection(fs)
 
-## not that order doesn't matter for these:
+# note that order doesn't matter for these:
 
 print u"union:", fs.union(s)
 print u"intersection:", fs.intersection(s)
-
-
-
-

@@ -1,0 +1,5 @@
+this is a line   
+   the preveious one has extra space on end   
+	This one has tabs and spaces
+
+the end

@@ -21,20 +21,20 @@ def function_builder(n):
 
     l = []
     for i in range(n):
-        l.append( lambda x, i=i: x+i )
+        l.append(lambda x, i=i: x+i)
     return l
 
 
 def function_builder2(n):
 
-    return [ lambda x, i=i: x+i for i in range(n) ]
+    return [lambda x, i=i: x+i for i in range(n)]
 
 
 if __name__ == "__main__":
-    ## some simples tests
+    # some simples tests
 
     # uncomment to test second version
-    #function_builder = function_builder2
+    # function_builder = function_builder2
 
     """
     the function should return a list of the length input
@@ -58,7 +58,6 @@ if __name__ == "__main__":
 
     assert func_list[3](3) == 6
 
-
     func_list = function_builder(10)
 
     assert func_list[0](12) == 12
@@ -68,4 +67,3 @@ if __name__ == "__main__":
     assert func_list[9](3) == 12
 
     print "you got this far without assertions failing: all good"
-
