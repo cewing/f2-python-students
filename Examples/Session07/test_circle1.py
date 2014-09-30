@@ -12,7 +12,6 @@ import math
 
 
 from circle import Circle
-#from circle_solution1 import Circle
 
 
 def test_create():
