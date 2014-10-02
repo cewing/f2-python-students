@@ -5,19 +5,19 @@ From Jon Jacky's Intro to Python course:
 """
 
 
-class vector(list):
+class Vector(list):
     def __repr__(self):
         """
         String representation, uses list (superclass) representation
         """
-        return 'vector(%s)' % super(vector, self).__repr__()
+        return 'Vector(%s)' % super(Vector, self).__repr__()
 
     def __add__(self, v):
         """
         redefine + as element-wise vector sum
         """
         assert len(self) == len(v)
-        return vector([x1 + x2 for x1, x2 in zip(self, v)])
+        return Vector([x1 + x2 for x1, x2 in zip(self, v)])
 
     def __mul__(self, v):
         """
@@ -28,8 +28,8 @@ class vector(list):
 
 l1 = [1, 2, 3]
 l2 = [4, 5, 6]
-v1 = vector(l1)
-v2 = vector(l2)
+v1 = Vector(l1)
+v2 = Vector(l2)
 
 if __name__ == '__main__':
     print 'l1'
