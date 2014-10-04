@@ -49,10 +49,13 @@ class Memoize:
             return self.memoized[args]
 
 
+@Memoize
 def sum2x(n):
     return sum(2 * i for i in xrange(n))
 
 import time
+
+
 def timed_func(func):
     def timed(*args, **kwargs):
         start = time.time()
@@ -61,3 +64,8 @@ def timed_func(func):
         print "time expired: %s" % elapsed
         return result
     return timed
+
+@timed_func
+@Memoize
+def sum2x(n):
+    return sum(2 * i for i in xrange(n))
