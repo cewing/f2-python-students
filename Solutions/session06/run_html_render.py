@@ -16,7 +16,7 @@ import html_render as hr
 reload(hr)
 
 
-## writing the file out:
+# writing the file out:
 def render(page, filename):
     """
     render the tree of elements
@@ -33,7 +33,7 @@ def render(page, filename):
     print f.read()
 
     f.seek(0)
-    open(filename, 'w', encoding="utf-8").write( f.read() )
+    open(filename, 'w', encoding="utf-8").write(f.read())
 
 
 # ## Step 1
@@ -190,28 +190,29 @@ page = hr.Html()
 
 
 head = hr.Head()
-head.append( hr.Meta(charset=u"UTF-8") )
+head.append(hr.Meta(charset=u"UTF-8"))
 head.append(hr.Title(u"PythonClass = Revision 1087:"))
 
 page.append(head)
 
 body = hr.Body()
 
-body.append( hr.H(2, u"PythonClass - Class 6 example") )
+body.append(hr.H(2, u"PythonClass - Class 6 example"))
 
-body.append(hr.P(u"Here is a paragraph of text -- there could be more of them, but this is enough  to show that we can do some text",
-              style=u"text-align: center; font-style: oblique;"))
+body.append(hr.P(u"Here is a paragraph of text -- there could be more of them,"
+                 u" but this is enough  to show that we can do some text",
+            style=u"text-align: center; font-style: oblique;"))
 
 body.append(hr.Hr())
 
 list = hr.Ul(id=u"TheList", style=u"line-height:200%")
 
-list.append( hr.Li(u"The first item in a list") )
-list.append( hr.Li(u"This is the second item", style="color: red") )
+list.append(hr.Li(u"The first item in a list"))
+list.append(hr.Li(u"This is the second item", style="color: red"))
 
 item = hr.Li()
 item.append(u"And this is a ")
-item.append( hr.A(u"http://google.com", "link") )
+item.append(hr.A(u"http://google.com", "link"))
 item.append(u"to google")
 
 list.append(item)
@@ -221,7 +222,3 @@ body.append(list)
 page.append(body)
 
 render(page, u"test_html_output8.html")
-
-
-
-

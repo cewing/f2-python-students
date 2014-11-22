@@ -12,14 +12,16 @@ class Element(object):
     """
     An element with optional attributes and multiple items in the content.
     """
-    tag = u"html" # just so there is default
+    tag = u"html"  # just so there is default
     indent = u"    "
+
     def __init__(self, content=None, **kwargs):
         """
         initialize an element with optional attributes, and any number
         of sub-elements and content
 
-        :param content: content of the element:  single string or another Element.
+        :param content: content of the element:
+                        single string or another Element.
                         an empty string will be ignored
         :param [kwargs]: optional attributes as keyword parameters.
 
@@ -44,27 +46,27 @@ class Element(object):
         """
         file_out.write(u"\n")
         file_out.write(ind)
-        file_out.write(u"<%s"%self.tag)
+        file_out.write(u"<%s" % self.tag)
         for key, value in self.attributes.items():
-            file_out.write(u' %s="%s"'%(key, value) )
+            file_out.write(u' %s="%s"' % (key, value))
         file_out.write(u">")
         for child in self.children:
             try:
                 child.render(file_out, ind + self.indent)
-            except AttributeError: # Assume it's a string or unicode object
-                                   #   if it doesn't have a render method
+            except AttributeError:  # Assume it's a string or unicode object
+                                    # if it doesn't have a render method
                 file_out.write(u"\n")
                 file_out.write(ind + self.indent)
                 file_out.write(unicode(child))
         file_out.write(u"\n")
         file_out.write(ind)
-        file_out.write(u'</%s>'%self.tag)
+        file_out.write(u'</%s>' % self.tag)
 
 
 class Html(Element):
     tag = u"html"
 
-    ## override the render method to add the "<!DOCTYPE html>"
+    # override the render method to add the "<!DOCTYPE html>"
     def render(self, file_out, ind=u""):
         print u"in Html render method"
         file_out.write(u"<!DOCTYPE html>")
@@ -100,9 +102,9 @@ class SelfClosingTag(Element):
         """
         file_out.write(u"\n")
         file_out.write(ind)
-        file_out.write(u"<%s"%self.tag)
+        file_out.write(u"<%s" % self.tag)
         for key, value in self.attributes.items():
-            file_out.write(u' %s="%s"'%(key, value) )
+            file_out.write(u' %s="%s"' % (key, value))
         file_out.write(u" />")
 
 
@@ -122,16 +124,16 @@ class OneLineTag(Element):
         """
         file_out.write(u"\n")
         file_out.write(ind)
-        file_out.write(u"<%s"%self.tag)
+        file_out.write(u"<%s" % self.tag)
         for key, value in self.attributes.items():
-            file_out.write(u' %s="%s"'%(key, value) )
+            file_out.write(u' %s="%s"' % (key, value))
         file_out.write(u"> ")
         for child in self.children:
             try:
                 child.render(file_out)
             except AttributeError:
                 file_out.write(unicode(child))
-        file_out.write(u' </%s>'%self.tag)
+        file_out.write(u' </%s>' % self.tag)
 
 
 class Title(OneLineTag):
@@ -143,6 +145,7 @@ class A(OneLineTag):
     element for a link ( <a> tag )
     """
     tag = u"a"
+
     def __init__(self, link, content):
         OneLineTag.__init__(self, content, href=link)
 
@@ -169,7 +172,7 @@ class H(OneLineTag):
     def __init__(self, level, content, **attributes):
         OneLineTag.__init__(self, content, **attributes)
 
-        self.tag = u"h%i"%level
+        self.tag = u"h%i" % level
 
 
 if __name__ == "__main__":
@@ -177,32 +180,32 @@ if __name__ == "__main__":
     page = Html()
 
     head = Head()
-    head.append( Meta(charset="UTF-8") )
+    head.append(Meta(charset="UTF-8"))
     head.append(Title("PythonClass = Revision 1087:"))
 
     page.append(head)
 
     body = Body()
 
-    body.append(  H(2, "PythonClass - Class 6 example") )
+    body.append(H(2, "PythonClass - Class 6 example"))
 
-    body.append(P("Here is a paragraph of text -- there could be more of them, but this is enough  to show that we can do some text",
+    body.append(P("Here is a paragraph of text -- there could be more of them,"
+                  " but this is enough  to show that we can do some text",
                   style="text-align: center; font-style: oblique;"))
 
     body.append(Hr())
 
     list = Ul(id="TheList", style="line-height:200%")
-    list.append( Li("The first item in a list") )
-    list.append( Li("This is the second item", style="color: red") )
+    list.append(Li("The first item in a list"))
+    list.append(Li("This is the second item", style="color: red"))
     item = Li()
     item.append("And this is a ")
-    item.append( A("http://google.com", "link") )
+    item.append(A("http://google.com", "link"))
     item.append("to google")
     list.append(item)
     body.append(list)
 
     page.append(body)
-
 
     f = cStringIO.StringIO()
 
