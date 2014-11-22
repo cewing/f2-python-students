@@ -41,7 +41,7 @@ print fruits
 
 ind = int(raw_input("give me an index> "))
 
-print "you selected fruit number: %i, which is %s"%(ind, fruits[ind-1])
+print "you selected fruit number: %i, which is %s" % (ind, fruits[ind-1])
 
 print fruits
 fruits.insert('Kiwi', 0)
@@ -67,7 +67,7 @@ print d_fruits
 orig_fruits = fruits[:]
 
 for fruit in fruits:
-    ans = raw_input("Do you like: %s? "%fruit)
+    ans = raw_input("Do you like: %s? " % fruit)
     if ans[0].lower() == 'n':
         while fruit in fruits:  # just in case there are duplicates
             fruits.remove(fruit)

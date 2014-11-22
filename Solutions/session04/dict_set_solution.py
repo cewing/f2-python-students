@@ -16,7 +16,7 @@ d = {"name": u"Chris",
 # Display the dictionary.
 print d
 
-#or something fancier, like:
+# or something fancier, like:
 print "{name} is from {city}, and likes {cake} cake.".format(**d)
 
 
@@ -85,11 +85,11 @@ s2 = set()
 s3 = set()
 s4 = set()
 for i in range(21):
-    if not i%2:
+    if not i % 2:
         s2.add(i)
-    if not i%3:
+    if not i % 3:
         s3.add(i)
-    if not i%4:
+    if not i % 4:
         s4.add(i)
 
 print s2
@@ -125,11 +125,7 @@ fs = frozenset(u'marathon')
 print "union:", s.union(fs)
 print "intersection:", s.intersection(fs)
 
-## not that order doesn't matter for these:
+# not that order doesn't matter for these:
 
 print "union:", fs.union(s)
 print "intersection:", fs.intersection(s)
-
-
-
-
